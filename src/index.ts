@@ -8,7 +8,7 @@
 */
 
 const TWOPI = 2 * Math.PI;
-const MAXPHASE = 65536;
+const MAXPHASE = 4294967295; // 2**32 - 1 -- all binary 1s
 
 type Writable<T> = {
   -readonly [K in keyof T]: T[K];
@@ -26,12 +26,11 @@ function modulate(
   base: number,
   output: FMOutputArray,
 ): [ArrayLike<number>, number] {
-  phase -= (MAXPHASE * Math.floor(phase/MAXPHASE));
+  phase &= MAXPHASE;
   const sample_phase = MAXPHASE / sampleRate;
   for (let i = start, o = 0; i < end; i++, o++) {
     const [frequency, amplitude] = signal(i);
-    phase += sample_phase * (base + frequency) + 0.5;
-    if (phase > MAXPHASE) phase -= MAXPHASE;
+    phase = (phase + sample_phase * (base + frequency) + 0.5) & MAXPHASE;
     output[o] = amplitude * voice(TWOPI * (phase / MAXPHASE));
   }
 
