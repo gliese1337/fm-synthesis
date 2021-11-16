@@ -1,6 +1,6 @@
 {
   "name": "fm-synthesis",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Have single-channel frequency sample data? Want single-channel audio PCM data?",
   "main": "bin/index.js",
   "types": "bin/index.d.ts",
