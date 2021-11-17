@@ -32,8 +32,8 @@ interface BasicInput {
     // Optional offset in the output buffer at which to start writing. Defaults to zero.
     // This also applies to internally-allocated output buffers, and will increase their length.
     offset?: number;
-    // Waveform function. For best results, `voice` should have a natural period of 2Pi, and a range of -1 to 1. Defaults to Math.sin(t).
-    voice?: ((t: number) => number) | 'sine' | 'square' | 'triangle' | 'sawtooth';
+    // Waveform function. For best results, `voice` should have a natural period of 2Pi, and a range of -1 to 1. Defaults to Math.sin.
+    voice?: ((t: number) => number) | 'sine' | 'square' | 'triangle' | 'sawtooth' | 'elliptical';
 }
 ```
 
