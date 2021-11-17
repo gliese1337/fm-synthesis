@@ -26,6 +26,14 @@ const voices = {
     const x = t * INVTWOPI;
     return 2 * (x - Math.floor(x)) - 1;
   },
+  elliptical(t: number) {
+    // (2x/pi-1)^2 + y^2 = 1
+    // y = sqrt(1 - (2x/pi-1)^2)
+    t -= TWOPI * Math.floor(t*INVTWOPI);
+    return t < Math.PI ?
+      Math.sqrt(1 - (t * INVTWOPI - 1)**2):
+      -Math.sqrt(1 - ((t - Math.PI) * INVTWOPI - 1)**2);
+  }
 };
 
 type Voices = keyof typeof voices;

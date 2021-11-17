@@ -37,7 +37,7 @@ function checkEqual(a: Float32Array, b: Float32Array, c: string, d: string, voic
   }
 }
 
-for (const voice of ['sine', 'triangle', 'sawtooth', 'square'] as any[]) {
+for (const voice of ['sine', 'triangle', 'sawtooth', 'square', 'elliptical'] as any[]) {
 
   fromPaired({ sampleRate, frequency, amplitude, voice, base: 440, output: output1 });
   wav(`${voice}_p.wav`, output1);
